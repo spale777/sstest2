@@ -5,7 +5,6 @@
       <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
       <li data-target="#carousel-example-generic" data-slide-to="1"></li>
     </ol> -->
-
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         <div class="item active" id="slide1" style="background: url(http://placehold.it/1920x605) no-repeat left center; background-size: cover;"> <!-- Ready for JS Injection -->
@@ -25,7 +24,6 @@
     </div>
     <!-- Blue Filter -->
     <div id="home-search-section"></div>
-
     <!-- Controls -->
     <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
@@ -35,12 +33,8 @@
         <span class="glyphicon glyphicon-chevron-right"></span>
         <span class="sr-only">Next</span>
     </a>
-
-
-
 </div>
 <!-- END HOME SLIDER SECTION -->
-
 <!-- BEGIN HOME ADVANCED SEARCH -->
 <div id="home-advanced-search" class="open">
     <div id="opensearch"></div>
@@ -57,7 +51,6 @@
 										</span>
                             </div>
                         </div>
-
                         <div class="form-control-small">
                             <select id="search_status" name="search_status" data-placeholder="Stay...">
                                 <option value=""> </option>
@@ -215,9 +208,6 @@
                         </ul>
                     </div>
                 </div>
-
-
-
                 <div class="row">
                     <div class="col-sm-12">
                         <h1 class="section-title">Popular Regions</h1>
@@ -261,14 +251,8 @@
                             </div>
                         </div>
 
-
                     </div>
                 </div>
-
-
-
-
-
                 <h1 class="section-title">Recent Articles</h1>
                 <div class="grid-style1">
                     <% loop $LatestArticles(3) %>
