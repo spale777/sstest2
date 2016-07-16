@@ -9,7 +9,7 @@ class Region extends DataObject
 {
     private static $db = [
         'Title' => 'Varchar',
-        'Description' => 'Text',
+        'Description' => 'HTMLText',
     ];
 
     private static $has_one = [
@@ -36,7 +36,7 @@ class Region extends DataObject
     {
         $fields = FieldList::create(
             TextField::create('Title'),
-            TextareaField::create('Description'),
+            HtmlEditorField::create('Description'),
             $photo = UploadField::create('Photo')
         );
 
@@ -46,5 +46,26 @@ class Region extends DataObject
         ]);
 
         return $fields;
+    }
+
+    /**
+     * Link method that return a base link from a has_one relation with RegionsPage
+     * then appends show/ and then the ID of the region final result is root/regions/show/ID
+     */
+    public function Link()
+    {
+        return $this->RegionsPage()->Link('show/'.$this->ID);
+    }
+
+    /**
+     * First we get the current controller witch is in this case RegionsPage_Controller
+     * then we get SSHTTPRequest object that has method param() that returns the parameter
+     * that we specified in this case the ID that is in the url $Action/$ID/$id
+     * then we compare that with the current region being showed if that evaluates to true then we
+     * return 'current' as a class of the link else we will return 'link' as a class of the anchor
+     */
+    public function LinkingMode()
+    {
+        return Controller::curr()->getRequest()->param('ID') == $this->ID ? 'current' : 'link';
     }
 }
