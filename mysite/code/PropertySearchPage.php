@@ -61,9 +61,16 @@ class PropertySearchPage_Controller extends Page_Controller
             ->setPageLength(15)
             ->setPaginationGetVar('s');
 
-        return [
+        $data = [
             'Results' => $paginatedProperties,
         ];
+
+        if($request->isAjax()){
+            return $this->customise($data)
+                        ->renderWith('PropertySearchResults');
+        }
+
+        return $data;
     }
 
     public function PropertySearchForm()
