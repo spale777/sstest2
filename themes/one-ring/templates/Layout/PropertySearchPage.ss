@@ -34,6 +34,7 @@
                 <!-- BEGIN PROPERTY LISTING -->
                 <div id="property-listing" class="list-style clearfix"> <!-- Inject "grid-style1" for grid view-->
                     <div class="row">
+                        <h3>Showing $Results.PageLength results ($Results.getTotalItems)</h3>
                         <% if $Results %>
                             <% loop $Results %>
                                 <div class="item col-md-4">
@@ -67,25 +68,33 @@
                     </div>
                 </div>
                 <!-- END PROPERTY LISTING -->
-
-
                 <!-- BEGIN PAGINATION -->
-                <div class="pagination">
-                    <ul id="previous col-xs-6">
-                        <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-                    </ul>
-                    <ul class="hidden-xs">
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                    </ul>
-                    <ul id="next col-xs-6">
-                        <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-                    </ul>
-                </div>
+                <% if $Results.MoreThanOnePage %>
+                    <div class="pagination">
+                        <% if $Results.NotFirstPage %>
+                            <ul id="previous col-xs-6">
+                                <li><a href="$Results.PrevLink"><i class="fa fa-chevron-left"></i></a></li>
+                            </ul>
+                        <% end_if %>
+                        <ul class="hidden-xs">
+                            <% loop $Results.PaginationSummary(10) %>
+                                <% if $Link %>
+                                    <li <% if $CurrentBool %>class="active"<% end_if %>>
+                                        <a href="$Link">$PageNum</a>
+                                    </li>
+                                <% else %>
+                                    <li>...</li>
+                                <% end_if %>
+                            <% end_loop %>
+                        </ul>
+                        <% if $Results.NotLastPage %>
+                            <ul id="next col-xs-6">
+                                <li><a href="$Results.NextLink"><i class="fa fa-chevron-right"></i></a></li>
+                            </ul>
+                        <% end_if %>
+                    </div>
+                <% end_if %>
                 <!-- END PAGINATION -->
-
             </div>
             <!-- END MAIN CONTENT -->
 
