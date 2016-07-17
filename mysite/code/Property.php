@@ -14,6 +14,9 @@ class Property extends DataObject
         'Bedrooms' => 'Int',
         'Bathrooms' => 'Int',
         'FeaturedOnHomepage' => 'Boolean',
+        'AvailableStart' => 'Date',
+        'AvailableEnd' => 'Date',
+        'Description' => 'Text'
     ];
 
     private static $has_one = [
@@ -58,6 +61,7 @@ class Property extends DataObject
         $fields = FieldList::create(TabSet::create('Root'));
         $fields->addFieldsToTab('Root.Main', [
             TextField::create('Title'),
+            TextareaField::create('Description'),
             CurrencyField::create('PricePerNight', 'Price Per Night'),
             DropdownField::create('Bedrooms', 'Number Of Bedrooms')
                 ->setSource(ArrayLib::valuekey(range(1,10))),
