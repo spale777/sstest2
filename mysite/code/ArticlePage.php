@@ -18,6 +18,7 @@ class ArticlePage extends Page
     private static $has_one = [
         'Photo' => 'Image',
         'Brochure' => 'File',
+        'Region' => 'Region'
     ];
 
     private static $has_many = [
@@ -48,6 +49,12 @@ class ArticlePage extends Page
         $photo->setFolderName('travel-photos');
         $brochure->getValidator()->setAllowedExtensions(['pdf',]);
         $brochure->setFolderName('travel-brochures');
+
+        $fields->addFieldToTab('Root.Main', DropdownField::create(
+            'RegionID',
+            'Region',
+            Region::get()->map('ID','TITLE')
+        )->setEmptyString('-- None --'), 'Content');
 
         return $fields;
     }
